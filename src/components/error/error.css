@@ -1,0 +1,27 @@
+.err {
+    position: relative;
+    display: flex;
+    height: 100vh;
+}
+
+.err_block{
+    margin: 0 auto;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 0;
+    width: 400px;
+    height: 200px;
+    background: black;
+    border: 2px solid black;
+    border-radius: 10px;
+    opacity: 0.6;
+    text-align: center;
+}
+
+.err_block div{
+    margin-top: 15%;
+    color: white;
+    font-size: 3rem;
+
+}
