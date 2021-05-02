@@ -39,28 +39,4 @@ class MenuList extends Component {
     }
 }
 
-
-// const mapStateToProps = (state) => {
-//     return {
-//         menuItems: state.menu,
-//         loading: state.loading,
-//         err: state.error
-//     }
-// }
-
-// const mapDispatchToProps =( dispatch) => {
-//     return {
-//         menuLoaded: (newMenu) => {
-//             dispatch(menuLoaded(newMenu))
-//         }
-//     }
-// }
-
-
-// const mapDispatchToProps = {
-//     menuLoaded,
-//     menuRequested,
-//     menuAborted
-// }
-
 export default (MenuList);

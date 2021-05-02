@@ -1,26 +1,30 @@
 import React from "react";
 import WithRestoService from "../hoc";
-import {menuAborted, itemLoaded, menuRequested} from "../../actions";
-import {connect} from "react-redux";
+import {itemLoaded, menuRequested} from "../../actions";
+import {useDispatch, useSelector} from "react-redux";
 import Spinner from "../spinner";
 import Error from "../error";
 import './styles/itempage.scss'
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
+
 
 const MenuItemPage = (props) => {
-    const {item, err} = props
     const [load, setLoad] = React.useState(true)
+    let history = useHistory()
+    const dispatch = useDispatch()
+    const { item, err } = useSelector(state => state)
+    const {RestoService} = props;
+
     React.useEffect(() => {
-        props.menuRequested();
-        const {RestoService} = props;
+        dispatch(menuRequested());
         RestoService.getMenuItem(props.id)
-            .then(res => props.itemLoaded(res))
+            .then(res => dispatch(itemLoaded(res)))
             .finally(() => setLoad(false))
     }, [])
 
     if (load) {
         return (
-            <div className="item_page">
+            <div className="menuitem__body">
                 <Spinner/>
             </div>
         )
@@ -32,15 +36,16 @@ const MenuItemPage = (props) => {
             <Error/>
         )
     }
+    const handleBack = () => {
+        history.goBack()
+    }
 
     return (
         <>
             <div className="menuitem__body">
-                <Link to={'/'}>
-                    <button className='menuitem__back-btn'>
-                        Back
-                    </button>
-                </Link>
+                <button onClick={handleBack} className='menuitem__back-btn'>
+                    Go Back
+                </button>
                 <div className="menuitem__block">
                     <div className='menuitem__img-block'>
                         <img
@@ -65,20 +70,9 @@ const MenuItemPage = (props) => {
     )
 }
 //TODO Component
-const mapStateToProps = (state) => {
-    return {
-        // menuItems: state.menu,
-        // loading: state.loading,
-        err: state.error,
-        item: state.item
-    }
-}
-
-const mapDispatchToProps = {
-    menuRequested,
-    menuAborted,
-    itemLoaded,
-}
 
 
-export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(MenuItemPage));
+//I don't need to use connect with hooks
+
+
+export default WithRestoService()(MenuItemPage)

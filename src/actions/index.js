@@ -24,7 +24,15 @@ const itemLoaded = (item) => {
     }
 }
 
+const deleteCardItem = (id) => {
+    return {
+        type: 'DELETE_CARD_ITEM',
+        payload: id
+    }
+}
+
 export {
+    deleteCardItem,
     menuLoaded,
     menuRequested,
     menuAborted,
