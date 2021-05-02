@@ -1,3 +1,12 @@
+%menuitem-btn {
+    height: 40px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 .cart {
     padding-top: 120px;
     padding-bottom: 50px;
@@ -45,5 +54,15 @@
         border-radius: 100%;
         border: 1px solid #fff;
         cursor: pointer;
+    }
+    &__back-btn{
+        opacity: 0.5;
+        @extend %menuitem-btn;
+        background: black;
+        color: white;
+        width: 100px;
+    }
+    &__back-btn:hover{
+        opacity: 1;
     }
 }

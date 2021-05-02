@@ -24,9 +24,19 @@ const itemLoaded = (item) => {
     }
 }
 
+
+const addToCard = (id) => {
+    return {
+        type: "ITEM_ADD_TO_CARD",
+        payload: id
+    }
+}
+
+
 export {
     menuLoaded,
     menuRequested,
     menuAborted,
-    itemLoaded
+    itemLoaded,
+    addToCard
 }

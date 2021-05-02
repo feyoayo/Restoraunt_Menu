@@ -1,37 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MenuList from '../menu-list';
 import {menuAborted, menuLoaded, menuRequested} from "../../actions";
 import WithRestoService from "../hoc";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const MainPage = (props) => {
-    const {menuItems, loading, err} = props
-    React.useEffect(() => {
-        props.menuRequested();
+    const {menu, loading, err} = useSelector(state => state)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(menuRequested());
         const {RestoService} = props
         RestoService.getMenuItems()
-            .then(res => props.menuLoaded(res)).catch(err => {
-            props.menuAborted(err)
+            .then(res => dispatch(menuLoaded(res))).catch(err => {
+            dispatch(menuAborted(err))
         })
-    }, loading)
+    }, [])
 
     return (
-        <MenuList menuItems={menuItems} loading={loading} err={err}/>
+        <MenuList menuItems={menu} loading={loading} err={err}/>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        menuItems: state.menu,
-        loading: state.loading,
-        err: state.error
-    }
-}
-
-const mapDispatchToProps = {
-    menuLoaded,
-    menuRequested,
-    menuAborted
-}
-
-export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(MainPage));
+export default WithRestoService()(MainPage);
