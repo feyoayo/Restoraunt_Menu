@@ -9,6 +9,7 @@ const CartTable = () => {
     const backHandler = () => {
         history.goBack()
     }
+    //
 
     return (
         <>
