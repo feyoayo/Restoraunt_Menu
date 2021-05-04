@@ -1,11 +1,12 @@
 import React from "react";
 import WithRestoService from "../hoc";
-import {addToCard, itemLoaded, menuRequested} from "../../actions";
 import {useDispatch, useSelector} from "react-redux";
 import Spinner from "../spinner";
 import Error from "../error";
 import './styles/itempage.scss'
 import {useHistory} from "react-router-dom";
+import {addToCard, itemLoaded, menuRequested} from "../../redux/reducers/menuReducer";
+import {saveToCartAsync} from '../../redux/reducers/menuReducer'
 
 
 const MenuItemPage = (props) => {
@@ -13,6 +14,7 @@ const MenuItemPage = (props) => {
     let history = useHistory()
     const dispatch = useDispatch()
     const { item, err, cardItems } = useSelector(state => state)
+    const  state = useSelector(state => state)
     const {RestoService} = props;
 
     React.useEffect(() => {
@@ -39,10 +41,9 @@ const MenuItemPage = (props) => {
     const handlerBack = () => {
         history.goBack()
     }
-    const addToCardHandler = (id) => {
-        console.log(`${id} going to be in card`)
-        dispatch(addToCard(id))
-        console.log(cardItems)
+    const addToCardHandler = (obj) => {
+        dispatch(addToCard(obj))
+        dispatch(saveToCartAsync())
 
     }
 
@@ -57,7 +58,7 @@ const MenuItemPage = (props) => {
                         <img
                             src={item.url}
                             alt={item.title}/>
-                            <button onClick={() => addToCardHandler(item.id)} className="menuitem__img-block__btn">Add to cart</button>
+                            <button onClick={() => addToCardHandler(item)} className="menuitem__img-block__btn">Add to cart</button>
                     </div>
                     <div className='menuitem__text-block'>
                         <div className="menuitem__text-block__title">

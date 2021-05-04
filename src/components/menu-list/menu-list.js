@@ -3,16 +3,18 @@ import MenuListItem from '../menu-list-item';
 import './menu-list.scss';
 import Spinner from "../spinner";
 import Error from "../error";
-import {addToCard} from "../../actions";
+import {addToCard, saveToCartAsync} from "../../redux/reducers/menuReducer";
 import {useDispatch} from "react-redux";
+
 
 const MenuList = (props) => {
     const {menuItems, loading, err} = props;
     const dispatch = useDispatch()
 
-    const addToCardHandler = (id) => {
-        console.log(`${id} going to be in card`)
-        dispatch(addToCard(id))
+
+    const addToCardHandler = (obj) => {
+        dispatch(addToCard(obj))
+        dispatch(saveToCartAsync())
     }
 
     if (loading) {
@@ -29,7 +31,11 @@ const MenuList = (props) => {
                 { menuItems.map((item) => {
                     const {id} = item
                     return (
-                        <MenuListItem addToCardHandler={addToCardHandler} key={id} menuItem={item}/>
+                        <>
+                            <MenuListItem addToCardHandler={addToCardHandler} key={id} menuItem={item}/>
+
+                        </>
+
                     )
                 })}
             </ul>

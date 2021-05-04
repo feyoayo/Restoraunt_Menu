@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import MenuList from '../menu-list';
-import {menuAborted, menuLoaded, menuRequested} from "../../actions";
+import {menuAborted, menuLoaded, menuRequested} from "../../redux/reducers/menuReducer";
 import WithRestoService from "../hoc";
 import {useDispatch, useSelector} from "react-redux";
 

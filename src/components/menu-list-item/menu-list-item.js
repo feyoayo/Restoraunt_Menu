@@ -23,7 +23,7 @@ const MenuListItem = (props) => {
                 <button onClick={() => openItemDetail(id)} className="menu__open-btn">
                     Open
                 </button>
-                <button onClick={() => props.addToCardHandler(id)} className="menu__btn">Add to cart</button>
+                <button onClick={() => props.addToCardHandler(props.menuItem)} className="menu__btn">Add to cart</button>
             </div>
         </li>
     )

@@ -42,5 +42,28 @@
       "category": "pasta",
       "id": 6
     }
+  ],
+  "cart": [
+    {
+      "title": "Cesar salad",
+      "price": 12,
+      "url": "https://static.1000.menu/img/content/21458/-salat-cezar-s-kr-salat-cezar-s-krevetkami-s-maionezom_1501173720_1_max.jpg",
+      "category": "salads",
+      "id": 1
+    },
+    {
+      "title": "Pizza Margherita",
+      "price": 10,
+      "url": "http://v.img.com.ua/b/orig/9/f8/0ec35ab54c1be68ced597584c07d6f89.jpg",
+      "category": "pizza",
+      "id": 2
+    },
+    {
+      "title": "Greece salad",
+      "price": 8,
+      "url": "https://assets.epicurious.com/photos/576454fb42e4a5ed66d1df6b/master/pass/greek-salad.jpg",
+      "category": "salads",
+      "id": 4
+    }
   ]
 }
